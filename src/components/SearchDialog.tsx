@@ -3,9 +3,13 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import { Search } from "@mui/icons-material";
-import { Divider, Stack } from "@mui/material";
+import { DialogActions, Stack } from "@mui/material";
 
-export default function SearchDialog() {
+type props = {
+  children?: React.JSX.Element;
+  callback?: (value?: any) => void;
+};
+export default function SearchDialog(props: props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -59,6 +63,10 @@ export default function SearchDialog() {
           onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             handleClose();
+            const formData = new FormData(event.currentTarget);
+            const formJson = Object.fromEntries((formData as any).entries());
+            const searchInput = formJson.search;
+            props.callback && props.callback(searchInput);
           },
         }}
       >
@@ -69,27 +77,17 @@ export default function SearchDialog() {
             </span>
             <input
               type="text"
+              id="search"
+              name="search"
               placeholder="What are you looking for?"
               className=" bg-transparent outline-none   px-6 placeholder:text-xs border focus-within:outline-none focus:outline-none   rounded-xl "
             />
           </div>
-          <Divider />
-          <div className=" h-56 mt-2  ">
-            <div className=" grid grid-cols-2 gap-2">
-              {["رویداد", "خانه", "تاریخچه"].map((i) => (
-                <Button
-                  className="grid-cols-1  !text-inherit !rounded-lg text-xs  w-full  "
-                  sx={{
-                    border: "1px solid #00000015",
-                  }}
-                  onClick={() => handleClose()}
-                >
-                  {i}
-                </Button>
-              ))}
-            </div>
-          </div>
+          {props.children}
         </DialogContent>
+        <DialogActions>
+          <Button type="submit">Search...</Button>
+        </DialogActions>
       </Dialog>
     </React.Fragment>
   );

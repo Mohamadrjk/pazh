@@ -1,10 +1,12 @@
 import { faIR } from "@mui/x-data-grid/locales";
-import { DataGrid, GridColDef, useGridApiRef } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridToolbar,
+  useGridApiRef,
+} from "@mui/x-data-grid";
 
-// type DataTableProps = {
-//   cols: Array<GridColDef>;
-//   rows: Array<object>;
-// };
+
 
 const columns: GridColDef[] = [
   { field: "number", headerName: "ردیف", minWidth: 170, align: "center" },
@@ -151,32 +153,45 @@ const rows = [
   // },
 ];
 
+
+
 export default function DataTable() {
   const apiRef = useGridApiRef();
+  
   return (
-    <div style={{ width: "100%" }}>
-      <DataGrid
-        showColumnVerticalBorder={false}
-        sx={{
-          borderInline: "none",
-          ".MuiDataGrid-columnHeaderTitleContainer": {
-            justifyContent: "center",
-          },
-        }}
-        apiRef={apiRef}
-        rows={rows}
-        columns={columns}
-        disableColumnSelector={true}
-        disableMultipleRowSelection={true}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        localeText={faIR.components["MuiDataGrid"].defaultProps.localeText}
-        showCellVerticalBorder={false}
-      />
-    </div>
+    
+      <div style={{ width: "100%" }}>
+        <DataGrid
+          showColumnVerticalBorder={false}
+          sx={{
+            borderInline: "none",
+            ".MuiDataGrid-columnHeaderTitleContainer": {
+              justifyContent: "center",
+            },
+          }}
+          apiRef={apiRef}
+          rows={rows}
+          columns={columns}
+          disableColumnSelector={true}
+          disableMultipleRowSelection={true}
+          slots={{
+            toolbar: GridToolbar,
+          }}
+          slotProps={{
+            toolbar: {
+              showQuickFilter: true,
+            },
+          }}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 },
+            },
+          }}
+          pageSizeOptions={[5, 10]}
+          localeText={faIR.components["MuiDataGrid"].defaultProps.localeText}
+          showCellVerticalBorder={false}
+        />
+      </div>
+  
   );
 }

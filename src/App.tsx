@@ -1,7 +1,5 @@
 import TableData from "./components/Table";
-import { Button, Stack, Typography } from "@mui/material";
-import { Search } from "@mui/icons-material";
-
+import {  Typography } from "@mui/material";
 
 function App() {
   return (
@@ -15,35 +13,11 @@ function App() {
               noWrap
               component="div"
             >
-              تاریخچه رویداد ها :
+              تاریخچه رویداد ها
             </Typography>
           </div>
-          <Stack>
-            <Button
-              component="label"
-              variant="text"
-              sx={{
-                color: "black",
-                border: "1px solid #00000015",
-                borderRadius: 25,
-                paddingBlock: "1.5px",
-                justifyContent: "start",
-                paddingInline: "20px",
-                backgroundColor: "#fff",
-                textWrap: "nowrap",
-                width: {
-                  sm: "200px",
-                },
-              }}
-              color="inherit"
-              disableElevation
-              startIcon={<Search />}
-            >
-              <span>جستجو در جدول...</span>
-            </Button>
-          </Stack>
         </div>
-        <TableData  />
+          <TableData />
       </div>
     </div>
   );

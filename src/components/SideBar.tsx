@@ -14,7 +14,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import {
   Avatar,
+  Button,
   Collapse,
+  Divider,
   ListItemIcon,
   ListItemText,
   Stack,
@@ -353,7 +355,25 @@ export default function Sidebar(props: Props) {
                 <MenuIcon />
               </IconButton>
 
-              <SearchDialog />
+              <SearchDialog>
+                <>
+                  <Divider />
+                  <div className=" h-56 mt-2  ">
+                    <div className=" grid grid-cols-2 gap-2">
+                      {["رویداد", "خانه", "تاریخچه"].map((i) => (
+                        <Button
+                          className="grid-cols-1  !text-inherit !rounded-lg text-xs  w-full  "
+                          sx={{
+                            border: "1px solid #00000015",
+                          }}
+                        >
+                          {i}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              </SearchDialog>
             </Stack>
           </Toolbar>
         </AppBar>
