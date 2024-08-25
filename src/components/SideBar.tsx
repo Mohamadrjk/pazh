@@ -21,11 +21,7 @@ import {
   useScrollTrigger,
 } from "@mui/material";
 import SearchDialog from "./SearchDialog";
-import {
-  ChevronLeft,
-  ChevronRight,
-  HistoryOutlined,
-} from "@mui/icons-material";
+import { ChevronRight, HistoryOutlined } from "@mui/icons-material";
 
 const Navs = [
   {
@@ -279,9 +275,7 @@ const drawer = (
 );
 function ElevationScroll(props: Props) {
   const { children } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -396,14 +390,13 @@ export default function Sidebar(props: Props) {
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
           aria-label="mailbox folders"
         >
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Drawer
             variant="temporary"
             open={mobileOpen}
             onTransitionEnd={handleDrawerTransitionEnd}
             onClose={handleDrawerClose}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true,
             }}
             sx={{
               display: { xs: "block", sm: "none" },

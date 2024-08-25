@@ -1,4 +1,3 @@
-import { GridColDef } from "@mui/x-data-grid";
 import TableData from "./components/Table";
 import { Button, Stack, Typography } from "@mui/material";
 import { Search } from "@mui/icons-material";
