@@ -55,12 +55,9 @@ export default function SearchDialog() {
           component: "form",
           sx: {
             borderRadius: "10px",
-
           },
           onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries((formData as any).entries());
             handleClose();
           },
         }}
